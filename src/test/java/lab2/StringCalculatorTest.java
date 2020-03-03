@@ -29,4 +29,11 @@ public class StringCalculatorTest {
 		assertThat(calculator.add("2,5,5")).isEqualTo(12);
 	}
 
+	@Test
+	public void metaCharaterReturnTest(){
+		assertThat(calculator.add("1\n2,3")).isEqualTo(6);
+	}
+
+
+
 }
