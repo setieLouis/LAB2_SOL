@@ -1,4 +1,4 @@
-package it.unimi.di.se.lab03;
+package lab2;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -19,6 +19,14 @@ public class StringCalculatorTest {
 	@Before
 	public void setUp(){
 		calculator = new StringCalculator();
+	}
+
+	@Test
+	public void onlyTestNumberTest(){
+		assertThat(calculator.add("")).isEqualTo(0);
+		assertThat(calculator.add("1,3")).isEqualTo(4);
+		assertThat(calculator.add("3,2,0")).isEqualTo(5);
+		assertThat(calculator.add("2,5,5")).isEqualTo(12);
 	}
 
 }
