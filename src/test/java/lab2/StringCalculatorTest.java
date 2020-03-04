@@ -39,7 +39,4 @@ public class StringCalculatorTest {
 		assertThat(calculator.add("//;\n1;2")).isEqualTo(3);
 		assertThat(calculator.add("//;\n1;2,3\n10")).isEqualTo(16);
 	}
-
-
-
 }
