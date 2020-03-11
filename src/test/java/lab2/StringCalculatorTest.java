@@ -54,4 +54,15 @@ public class StringCalculatorTest {
 	public void IgnoreNumberGreaterThanThousand(){
 		assertThat(calculator.add("1002,23")).isEqualTo(23);
 	}
+
+	@Test
+	public void useSequenceOfDelimiter(){
+		assertThat(calculator.add("//[***]\n1***2***3")).isEqualTo(6);
+		assertThat(calculator.add("//[##]\n1##2##3,7")).isEqualTo(13);
+	}
+
+	@Test
+	public void useMultipleSequenceOfDelimiter(){
+		assertThat(calculator.add("//[*][%]\n1*2%3")).isEqualTo(6);
+	}
 }

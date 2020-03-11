@@ -12,18 +12,36 @@ public class StringCalculator implements Calculator {
     private String addDelimiter(String expression){
         if(!expression.substring(0,2).equals("//"))
             return expression;
-        delimiter +="|" + String.valueOf(expression.charAt(2));
+        takeDelimiter(expression);
+        return expression.substring(expression.indexOf('\n') + 1);
+    }
 
-        return expression.substring(4);
+    private void takeDelimiter(String expression) {
+        if(expression.charAt(2) == '[') {
+            String multipleSequence =  expression.substring(2, expression.indexOf('\n'));
+            String tmpDelimiter = "";
+            while(!multipleSequence.isEmpty()){
+                tmpDelimiter += "|" + multipleSequence.substring(0, (multipleSequence.indexOf("]") + 1));
+                multipleSequence = multipleSequence.substring(multipleSequence.indexOf("]") + 1);
+            }
+            delimiter += tmpDelimiter;
+            return;
+        }
+        delimiter +="|" + expression.charAt(2);
     }
 
     @Override
     public int add(String expression) {
         if(isNull(expression) || expression.trim().length() == 0)
             return 0;
-        String numbers[] = addDelimiter(expression).split(delimiter);
+        expression = addDelimiter(expression);
+        String numbers[] = expression.split(delimiter);
         int result = 0;
-        for(String num: numbers) result +=  checkIllegalArgument(Integer.parseInt(num));
+        for(String num: numbers){
+            if (num.isEmpty())
+                continue;
+            result +=  checkIllegalArgument(Integer.parseInt(num));
+        }
         return result;
     }
 
@@ -34,6 +52,4 @@ public class StringCalculator implements Calculator {
             return 0;
         return num;
     }
-
-
 }
