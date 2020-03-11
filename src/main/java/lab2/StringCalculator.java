@@ -12,7 +12,15 @@ public class StringCalculator implements Calculator {
     private String addDelimiter(String expression){
         if(!expression.substring(0,2).equals("//"))
             return expression;
-        if(expression.charAt(2) == '[') delimiter += "|" + expression.substring(2, expression.indexOf('\n'));
+        if(expression.charAt(2) == '[') {
+            String multipleSequence =  expression.substring(2, expression.indexOf('\n'));
+            String tmpDelimiter = "";
+            while(!multipleSequence.isEmpty()){
+                tmpDelimiter += "|" + multipleSequence.substring(0, (multipleSequence.indexOf("]") + 1));
+                multipleSequence = multipleSequence.substring(multipleSequence.indexOf("]") + 1);
+            }
+            delimiter += tmpDelimiter;
+        }
         else delimiter +="|" + expression.charAt(2);
         return expression.substring(expression.indexOf('\n') + 1);
     }
