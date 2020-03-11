@@ -39,6 +39,4 @@ public class StringCalculator implements Calculator {
             return 0;
         return num;
     }
-
-
 }

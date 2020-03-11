@@ -60,4 +60,9 @@ public class StringCalculatorTest {
 		assertThat(calculator.add("//[***]\n1***2***3")).isEqualTo(6);
 		assertThat(calculator.add("//[##]\n1##2##3,7")).isEqualTo(13);
 	}
+
+	@Test
+	public void useMultipleSequenceOfDelimiter(){
+		assertThat(calculator.add("//[*][%]\n1*2%3")).isEqualTo(6);
+	}
 }
