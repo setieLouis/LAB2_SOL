@@ -12,18 +12,23 @@ public class StringCalculator implements Calculator {
     private String addDelimiter(String expression){
         if(!expression.substring(0,2).equals("//"))
             return expression;
-        delimiter +="|" + String.valueOf(expression.charAt(2));
-
-        return expression.substring(4);
+        if(expression.charAt(2) == '[') delimiter += "|" + expression.substring(2, expression.indexOf('\n'));
+        else delimiter +="|" + expression.charAt(2);
+        return expression.substring(expression.indexOf('\n') + 1);
     }
 
     @Override
     public int add(String expression) {
         if(isNull(expression) || expression.trim().length() == 0)
             return 0;
-        String numbers[] = addDelimiter(expression).split(delimiter);
+        expression = addDelimiter(expression);
+        String numbers[] = expression.split(delimiter);
         int result = 0;
-        for(String num: numbers) result +=  checkIllegalArgument(Integer.parseInt(num));
+        for(String num: numbers){
+            if (num.isEmpty())
+                num="0";
+            result +=  checkIllegalArgument(Integer.parseInt(num));
+        }
         return result;
     }
 
