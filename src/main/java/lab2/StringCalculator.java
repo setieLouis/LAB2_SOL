@@ -12,6 +12,11 @@ public class StringCalculator implements Calculator {
     private String addDelimiter(String expression){
         if(!expression.substring(0,2).equals("//"))
             return expression;
+        takeDelimiter(expression);
+        return expression.substring(expression.indexOf('\n') + 1);
+    }
+
+    private void takeDelimiter(String expression) {
         if(expression.charAt(2) == '[') {
             String multipleSequence =  expression.substring(2, expression.indexOf('\n'));
             String tmpDelimiter = "";
@@ -20,9 +25,9 @@ public class StringCalculator implements Calculator {
                 multipleSequence = multipleSequence.substring(multipleSequence.indexOf("]") + 1);
             }
             delimiter += tmpDelimiter;
+            return;
         }
-        else delimiter +="|" + expression.charAt(2);
-        return expression.substring(expression.indexOf('\n') + 1);
+        delimiter +="|" + expression.charAt(2);
     }
 
     @Override
