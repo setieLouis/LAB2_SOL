@@ -19,23 +19,20 @@ public class StringCalculator implements Calculator {
 
     @Override
     public int add(String expression) {
-
-
         if(isNull(expression) || expression.trim().length() == 0)
             return 0;
         String numbers[] = addDelimiter(expression).split(delimiter);
         int result = 0;
-        for(String num: numbers){
-            Integer numero =  Integer.parseInt(num);
-            checkIllegalArgument(numero);
-            result += numero;
-        }
+        for(String num: numbers) result +=  checkIllegalArgument(Integer.parseInt(num));
         return result;
     }
 
-    private void checkIllegalArgument(Integer num) {
+    private Integer checkIllegalArgument(Integer num) {
         if(num < 0 )
             throw new IllegalArgumentException("I valori negativi non sono ammessi");
+        else if (num > 1000)
+            return 0;
+        return num;
     }
 
 

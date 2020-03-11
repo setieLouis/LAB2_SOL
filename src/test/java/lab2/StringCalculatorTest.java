@@ -49,4 +49,9 @@ public class StringCalculatorTest {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("I valori negativi non sono ammessi");
 	}
+
+	@Test
+	public void IgnoreNumberGreaterThanThousand(){
+		assertThat(calculator.add("1002,23")).isEqualTo(23);
+	}
 }
