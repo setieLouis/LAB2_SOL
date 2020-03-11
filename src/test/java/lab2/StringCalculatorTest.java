@@ -5,13 +5,17 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.rules.Timeout;
 
 
 public class StringCalculatorTest {
 
 	@Rule
-  public Timeout globalTimeout = Timeout.seconds(2);
+	public Timeout globalTimeout = Timeout.seconds(2);
+
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
 	Calculator calculator = null;
 
@@ -37,5 +41,12 @@ public class StringCalculatorTest {
 	public void generalMetaCharaterTest(){
 		assertThat(calculator.add("//;\n1;2")).isEqualTo(3);
 		assertThat(calculator.add("//;\n1;2,3\n10")).isEqualTo(16);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void IllegalArgumentTest(){
+		assertThat(calculator.add("-1,3,-2")).isEqualTo(0);
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("I valori negativi non sono ammessi");
 	}
 }
