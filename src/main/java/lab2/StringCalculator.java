@@ -26,7 +26,7 @@ public class StringCalculator implements Calculator {
         int result = 0;
         for(String num: numbers){
             if (num.isEmpty())
-                num="0";
+                continue;
             result +=  checkIllegalArgument(Integer.parseInt(num));
         }
         return result;
