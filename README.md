@@ -38,6 +38,8 @@ Si suggerisce di eseguire i test non soltanto con Eclipse, ma anche eseguendo `.
 
 ## Specifica dei requisiti
 
+![enter image description here](https://it.wikipedia.org/wiki/Addizione#/media/File:AdditionLineUnary.svg)
+
 Le funzionalità di seguito elencate vanno implementate **nell'ordine in cui
 sono presentate**. Si suggerisce  di prendere visione di una funzionalità per
 volta (procedendo subito al ciclo di implementazione della medesima) in modo
