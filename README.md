@@ -17,6 +17,9 @@ bash start.sh email_unimi  username_bitbucket username_bitbucket_compagno
 
 ## Processo
 
+![enter image description here](https://it.wikipedia.org/wiki/Addizione#/media/File:AdditionLineUnary.svg)
+
+
 Una volta effettuato il **clone** del repository, il gruppo esegue il comando `git flow init` all'interno della directory clonata.
 Dopodiché, il gruppo implementa secondo la *metodologia TDD*
 le specifiche riportate di seguito; in maggior dettaglio, ripete i passi seguenti fino ad aver implementato tutte le funzionalità richieste:
